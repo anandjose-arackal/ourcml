@@ -34,7 +34,7 @@
       englishTitle: 'Badge',
       malayalamTitle: 'ബാഡ്ജ്',
       coverImage: 'https://lkeplxbdecciuwyawmwt.supabase.co/storage/v1/object/public/cml-audio/ourcml/badge.jpg',
-      audioUrl: 'https://lkeplxbdecciuwyawmwt.supabase.co/storage/v1/object/public/cml-audio/ourcml/CML%20badge.wav',
+      audioUrl: 'https://cml-hub.s3.ap-south-1.amazonaws.com/CML+badge.wav',
       description: 'Listen to the official CML Badge audio — the meaning and symbolism of the Cherupushpa Mission League badge, in English and Malayalam.',
       transcript:
         'This is a placeholder transcript for the CML Badge audio. Replace this text with the actual narration script describing the meaning of the badge.\n\n' +
@@ -46,7 +46,7 @@
       englishTitle: 'Emblem',
       malayalamTitle: 'എബ്ലം',
       coverImage: 'https://lkeplxbdecciuwyawmwt.supabase.co/storage/v1/object/public/cml-audio/ourcml/emblem.jpg',
-      audioUrl: 'https://lkeplxbdecciuwyawmwt.supabase.co/storage/v1/object/public/cml-audio/ourcml/CML%20emblem.wav',
+      audioUrl: 'https://cml-hub.s3.ap-south-1.amazonaws.com/CML+emblem.wav',
       description: 'Listen to the official CML Emblem audio narration in English and Malayalam.',
       transcript:
         'This is a placeholder transcript for the CML Emblem audio. Replace this text with the actual narration script.\n\n' +
@@ -58,7 +58,7 @@
       englishTitle: 'Flag',
       malayalamTitle: 'പതാക',
       coverImage: 'https://lkeplxbdecciuwyawmwt.supabase.co/storage/v1/object/public/cml-audio/ourcml/flag.jpg',
-      audioUrl: 'https://lkeplxbdecciuwyawmwt.supabase.co/storage/v1/object/public/cml-audio/ourcml/CML%20Flag.wav',
+      audioUrl: 'https://cml-hub.s3.ap-south-1.amazonaws.com/CML+Flag.wav',
       description: 'Listen to the official CML Flag audio narration in English and Malayalam.',
       transcript:
         'This is a placeholder transcript for the CML Flag audio. Replace this text with the actual narration script.\n\n' +
@@ -70,7 +70,7 @@
       englishTitle: 'Daily Prayer',
       malayalamTitle: 'അനുദിന പ്രാർത്ഥന',
       coverImage: 'https://lkeplxbdecciuwyawmwt.supabase.co/storage/v1/object/public/cml-audio/ourcml/prayer.jpg',
-      audioUrl: 'https://lkeplxbdecciuwyawmwt.supabase.co/storage/v1/object/public/cml-audio/ourcml/Daily%20Prayer%20CML%20June%2029.wav',
+      audioUrl: 'https://cml-hub.s3.ap-south-1.amazonaws.com/Daily+Prayer+CML+June+29.wav',
       description: 'Listen to the official CML Daily Prayer in English and Malayalam.',
       transcript:
         'This is a placeholder transcript for the CML Daily Prayer audio. Replace this text with the actual prayer text.\n\n' +
@@ -82,7 +82,7 @@
       englishTitle: 'Anthem',
       malayalamTitle: 'ആന്തം',
       coverImage: 'https://lkeplxbdecciuwyawmwt.supabase.co/storage/v1/object/public/cml-audio/ourcml/thersa.jpg',
-      audioUrl: 'https://lkeplxbdecciuwyawmwt.supabase.co/storage/v1/object/public/cml-audio/ourcml/cml%20anthem.wav',
+      audioUrl: 'https://cml-hub.s3.ap-south-1.amazonaws.com/cml+anthem.wav',
       description: 'Listen to the official CML Anthem in English and Malayalam.',
       transcript:
         'This is a placeholder transcript for the CML Anthem audio. Replace this text with the actual anthem lyrics.\n\n' +
