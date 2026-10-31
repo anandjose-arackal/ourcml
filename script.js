@@ -35,7 +35,9 @@
       malayalamTitle: 'ബാഡ്ജ്',
       coverImage: 'https://lkeplxbdecciuwyawmwt.supabase.co/storage/v1/object/public/cml-audio/ourcml/badge.jpg',
       audioUrl: 'https://cml-hub.s3.ap-south-1.amazonaws.com/CML+badge.wav',
-      description: 'Listen to the official CML Badge audio — the meaning and symbolism of the Cherupushpa Mission League badge, in English and Malayalam.',
+      // Shows the interactive badge (badge/badge.js) instead of the audio player.
+      illustration: true,
+      description: 'Explore the CML Badge — tap each part of the Cherupushpa Mission League badge to see its meaning and symbolism, in English and Malayalam.',
       transcript:
         'This is a placeholder transcript for the CML Badge audio. Replace this text with the actual narration script describing the meaning of the badge.\n\n' +
         'ഇത് CML ബാഡ്ജിന്റെ ട്രാൻസ്ക്രിപ്റ്റിന്റെ മാതൃകയാണ്. ബാഡ്ജിന്റെ അർത്ഥം വിവരിക്കുന്ന യഥാർത്ഥ ഉള്ളടക്കം ഇവിടെ ചേർക്കുക.',
@@ -104,6 +106,7 @@
   const playerCover = $('#playerCover');
   const playerTitleEn = $('#playerTitleEn');
   const playerTitleMl = $('#playerTitleMl');
+  const badgeExplorer = $('#badgeExplorer');
   const audioEl = $('#audioEl');
   const seek = $('#seek');
   const currentTimeEl = $('#currentTime');
@@ -656,12 +659,12 @@
     audioObject.type = 'application/ld+json';
     audioObject.textContent = JSON.stringify({
       '@context': 'https://schema.org',
-      '@type': 'AudioObject',
+      ...(item.illustration
+        ? { '@type': 'ImageObject', contentUrl: item.coverImage }
+        : { '@type': 'AudioObject', contentUrl: item.audioUrl, encodingFormat: 'audio/mpeg' }),
       name: `${item.englishTitle} — ${item.malayalamTitle}`,
       description: item.description,
-      contentUrl: item.audioUrl,
       thumbnailUrl: item.coverImage,
-      encodingFormat: 'audio/mpeg',
       inLanguage: ['en', 'ml'],
       url,
       isPartOf: {
@@ -698,6 +701,11 @@
     playerTitleMl.textContent = item.malayalamTitle;
     transcriptContent.textContent = item.transcript;
 
+    const isIllustration = !!item.illustration;
+    playerView.classList.toggle('is-illustration', isIllustration);
+    badgeExplorer.hidden = !isIllustration;
+    if (isIllustration) stopVisualizerLoop();
+
     // Lazy-load: only set src when the player actually opens.
     if (audioEl.dataset.loadedId !== item.id) {
       audioEl.pause();
@@ -729,8 +737,16 @@
       document.body.style.overflow = 'hidden';
     }
 
-    initVisualizer();
-    playHeroTransitionIn();
+    if (isIllustration) {
+      if (window.CMLBadge) window.CMLBadge.open();
+      // Narration plays behind the illustration. Browsers may block this on a
+      // direct page load with no tap yet; the play button is still there then.
+      if (audioEl.paused) togglePlayPause();
+    } else {
+      if (window.CMLBadge) window.CMLBadge.close();
+      initVisualizer();
+      playHeroTransitionIn();
+    }
     playerBack.focus();
   }
 
@@ -745,6 +761,7 @@
 
     audioEl.pause();
     stopVisualizerLoop();
+    if (window.CMLBadge) window.CMLBadge.close();
 
     if (!immediate && lastFocusedEl && document.contains(lastFocusedEl)) {
       lastFocusedEl.focus();
@@ -852,7 +869,7 @@
 
   playerBack.addEventListener('click', () => {
     const item = currentItem;
-    const fromRect = item ? playerCover.getBoundingClientRect() : null;
+    const fromRect = item && !item.illustration ? playerCover.getBoundingClientRect() : null;
     navigate('/');
     if (item && fromRect) playHeroTransitionOut(item, fromRect);
   });

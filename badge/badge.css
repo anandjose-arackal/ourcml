@@ -1,0 +1,377 @@
+/* =========================================================================
+   Cherupushpa Mission League — Interactive Badge (/badge)
+   Replaces the audio controls when the player overlay is in
+   `.is-illustration` mode. Uses the theme tokens from style.css.
+   ========================================================================= */
+
+/* ---- Player in illustration mode: the badge replaces the cover art;
+   the audio controls stay so the narration plays underneath ---- */
+.player-overlay.is-illustration .player-art-wrap,
+.player-overlay.is-illustration .visualizer {
+  display: none !important;
+}
+
+.player-overlay.is-illustration .player-progress-wrap {
+  width: min(100%, 520px);
+}
+
+.player-overlay.is-illustration .player-inner {
+  max-width: 980px;
+}
+
+.player-overlay.is-illustration .player-titles {
+  margin-bottom: 0.5rem;
+}
+
+.player-overlay.is-illustration .primary-controls {
+  margin-top: 0.5rem;
+}
+
+/* ---- Layout ---- */
+.badge-explorer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  justify-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.badge-explorer[hidden] {
+  display: none;
+}
+
+.bx-hint {
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: grid;
+  gap: 0.15rem;
+}
+
+.bx-hint [lang='ml'] {
+  font-family: var(--font-ml);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.bx-stage {
+  perspective: 900px;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.bx-tilt {
+  width: min(64vw, 270px);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.bx-badge {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  touch-action: manipulation;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.45));
+}
+
+.bx-part {
+  cursor: pointer;
+  outline: none;
+}
+
+.bx-part:focus-visible {
+  outline: 2px solid #ffdd1f;
+}
+
+.bx-measure text {
+  font: 500 12px var(--font-en);
+  fill: var(--text-muted);
+}
+
+.bx-m-line {
+  stroke: var(--text-muted);
+  stroke-width: 1.2;
+  fill: none;
+  stroke-dasharray: 1;
+}
+
+.bx-measure.is-on text {
+  fill: #ffdd1f;
+}
+
+.bx-measure.is-on .bx-m-line {
+  stroke: #ffdd1f;
+}
+
+/* ---- Meaning card ---- */
+.bx-side {
+  width: 100%;
+  display: grid;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.bx-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.2rem 1.2rem;
+  display: grid;
+  gap: 0.55rem;
+  text-align: left;
+}
+
+.bx-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bx-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex: none;
+  background: #ffdd1f;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+.bx-names {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.bx-card h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.bx-name-ml {
+  margin: 0;
+  font-family: var(--font-ml);
+  font-weight: 600;
+  color: #ffdd1f;
+}
+
+.bx-spec {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: #ffdd1f;
+}
+
+.bx-spec [lang='ml'] {
+  font-family: var(--font-ml);
+  letter-spacing: 0;
+  color: var(--text-secondary);
+}
+
+.bx-meaning {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.bx-meaning.bx-ml {
+  font-family: var(--font-ml);
+  font-size: 0.93rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+.bx-note {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.bx-note[lang='ml'] {
+  font-family: var(--font-ml);
+}
+
+/* ---- Part chips ---- */
+.bx-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.bx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--touch-target);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  font: 500 0.82rem var(--font-en);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.bx-chip[aria-pressed='true'] {
+  border-color: #ffdd1f;
+  background: var(--glass-bg-strong);
+}
+
+.bx-chip:focus-visible,
+.bx-replay:focus-visible {
+  outline: 2px solid #ffdd1f;
+  outline-offset: 2px;
+}
+
+.bx-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.bx-chip-t {
+  display: grid;
+  text-align: left;
+  line-height: 1.25;
+}
+
+.bx-chip-t [lang='ml'] {
+  font-family: var(--font-ml);
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.bx-replay {
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.bx-replay [lang='ml'] {
+  font-family: var(--font-ml);
+}
+
+/* ---- Wide screens: badge left, meanings right ---- */
+@media (min-width: 860px) {
+  .badge-explorer {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    column-gap: 2rem;
+  }
+
+  .bx-hint {
+    grid-column: 1 / -1;
+  }
+
+  /* Badge on the left; meaning card and audio controls stacked on the right,
+     so everything fits a laptop screen without scrolling. */
+  .player-overlay.is-illustration .player-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    grid-template-areas:
+      'head head'
+      'titles titles'
+      'hint side'
+      'badge side'
+      'badge progress'
+      'badge controls'
+      'badge .';
+    grid-template-rows: auto auto auto auto auto auto 1fr;
+    column-gap: 2rem;
+    align-content: start;
+  }
+
+  .player-overlay.is-illustration .badge-explorer {
+    display: contents;
+  }
+
+  .player-overlay.is-illustration .player-header { grid-area: head; }
+  .player-overlay.is-illustration .player-titles { grid-area: titles; margin-bottom: 0.75rem; }
+  .player-overlay.is-illustration .bx-hint { grid-area: hint; margin-bottom: 0.5rem; }
+  .player-overlay.is-illustration .bx-stage { grid-area: badge; align-self: start; }
+  .player-overlay.is-illustration .bx-side {
+    grid-area: side;
+    align-self: start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .player-overlay.is-illustration .bx-card {
+    flex-basis: 100%;
+  }
+
+  /* Chips and the replay button flow together in one wrapping row. */
+  .player-overlay.is-illustration .bx-chips {
+    display: contents;
+  }
+
+  .player-overlay.is-illustration .bx-replay {
+    font-size: 0;
+    gap: 0;
+    width: var(--touch-target);
+    padding: 0;
+    justify-content: center;
+  }
+
+  .player-overlay.is-illustration .bx-replay .material-symbols-rounded {
+    font-size: 22px;
+  }
+
+  .player-overlay.is-illustration .player-progress-wrap {
+    grid-area: progress;
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  /* Seeking is on the progress bar; skip ±10s here to keep the column short. */
+  .player-overlay.is-illustration #replayBtn,
+  .player-overlay.is-illustration #forwardBtn {
+    display: none;
+  }
+
+  .player-overlay.is-illustration .primary-controls {
+    grid-area: controls;
+    justify-self: start;
+    width: auto;
+    margin-top: 0;
+  }
+
+  .player-overlay.is-illustration .secondary-controls {
+    grid-area: controls;
+    justify-self: end;
+    width: auto;
+    align-self: center;
+    margin: 0;
+  }
+
+  /* Fit the whole badge (640 tall : 360 wide) in the window height. */
+  .bx-tilt {
+    width: clamp(200px, calc((100dvh - 250px) * 0.5625), 330px);
+  }
+
+  .bx-chips {
+    justify-content: flex-start;
+  }
+
+  .bx-replay {
+    justify-self: start;
+  }
+}

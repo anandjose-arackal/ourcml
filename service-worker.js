@@ -5,14 +5,18 @@
    so native Range-request seeking/streaming keeps working.
    ========================================================================= */
 
-const CACHE_VERSION = 'cml-v2';
+const CACHE_VERSION = 'cml-v9';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 
 const APP_SHELL = [
   '/',
   '/index.html',
-  '/style.css',
+  '/style.css?v=3',
   '/script.js',
+  '/badge/badge.js?v=5',
+  '/badge/badge.css?v=5',
+  '/fest/fest-banner.css?v=4',
+  '/badge/medal.webp',
   '/manifest.json',
   '/offline.html',
   '/icons/favicon.png',
